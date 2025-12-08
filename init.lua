@@ -96,7 +96,7 @@ require("lazy").setup({
 					"eslint",
 					"tailwindcss",
 					"postgres_lsp",
-					"lua_ls",
+					-- "lua_ls",
 					"stylua",
 				},
 			})
@@ -142,6 +142,14 @@ require("lazy").setup({
 				capabilities = capabilities,
 			}
 			vim.lsp.enable("postgres_lsp")
+
+			-- Lua
+			vim.lsp.config.lua_ls = {
+				cmd = { "lua-language-server" },
+				root_markers = { ".git" },
+				capabilities = capabilities,
+			}
+			vim.lsp.enable("lua_ls")
 
 			-- Inline diagnostics
 			vim.diagnostic.config({
