@@ -95,7 +95,7 @@ require("lazy").setup({
 					"ts_ls",
 					"eslint",
 					"tailwindcss",
-					"postgres_lsp",
+					-- "postgres_lsp",
 					-- "lua_ls",
 					"stylua",
 				},
@@ -137,8 +137,10 @@ require("lazy").setup({
 
 			-- Postgres
 			vim.lsp.config.postgres_lsp = {
-				cmd = { "postgres_lsp" },
-				root_markers = { ".git" },
+				cmd = { "postgres-language-server", "lsp-proxy" },
+				filetypes = { "sql" },
+				root_markers = { "postgres-language-server.jsonc" },
+				workspace_required = true,
 				capabilities = capabilities,
 			}
 			vim.lsp.enable("postgres_lsp")
@@ -183,7 +185,7 @@ require("lazy").setup({
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
+			--"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
@@ -205,7 +207,7 @@ require("lazy").setup({
 				sources = {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
-					{ name = "buffer" },
+					-- { name = "buffer" },
 					{ name = "path" },
 				},
 			})
@@ -224,7 +226,8 @@ require("lazy").setup({
 					css = { "prettier" },
 					html = { "prettier" },
 					json = { "prettier" },
-					sql = { "pg_format" },
+					-- sql = { "pg_format" },
+					sql = { "prettier" },
 					lua = { "stylua" },
 				},
 				format_on_save = {
@@ -292,20 +295,20 @@ require("lazy").setup({
 	},
 
 	-- Color scheme
-	-- {
-	-- 	"folke/tokyonight.nvim",
-	-- 	priority = 1000,
-	-- 	config = function()
-	-- 		vim.cmd.colorscheme("tokyonight-night")
-	-- 	end,
-	-- },
 	{
-		"Mofiqul/dracula.nvim",
+		"folke/tokyonight.nvim",
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("dracula")
+			vim.cmd.colorscheme("tokyonight-night")
 		end,
 	},
+	-- {
+	-- 	"Mofiqul/dracula.nvim",
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		vim.cmd.colorscheme("dracula")
+	-- 	end,
+	-- },
 
 	-- Adds git related signs to the gutter, as well as utilities for managing changes
 	{
