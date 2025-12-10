@@ -98,6 +98,7 @@ require("lazy").setup({
 					-- "postgres_lsp",
 					-- "lua_ls",
 					"stylua",
+					"emmet_ls",
 				},
 			})
 
@@ -153,6 +154,15 @@ require("lazy").setup({
 			}
 			vim.lsp.enable("lua_ls")
 
+			-- Emmet
+			vim.lsp.config.emmet_ls = {
+				cmd = { "emmet-ls", "--stdio" },
+				root_markers = { ".git" },
+				filetypes = { "html", "css", "svelte", "javascript", "typescript" },
+				capabilities = capabilities,
+			}
+			vim.lsp.enable("emmet_ls")
+
 			-- Inline diagnostics
 			vim.diagnostic.config({
 				virtual_text = true,
@@ -199,10 +209,11 @@ require("lazy").setup({
 					end,
 				},
 				mapping = cmp.mapping.preset.insert({
-					["<C-Space>"] = cmp.mapping.complete(),
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
-					["<Tab>"] = cmp.mapping.select_next_item(),
-					["<S-Tab>"] = cmp.mapping.select_prev_item(),
+					["<Tab>"] = cmp.mapping.confirm({ select = true }),
+					-- ["<C-Space>"] = cmp.mapping.complete(),
+					-- ["<CR>"] = cmp.mapping.confirm({ select = true }),
+					-- ["<Tab>"] = cmp.mapping.select_next_item(),
+					-- ["<S-Tab>"] = cmp.mapping.select_prev_item(),
 				}),
 				sources = {
 					{ name = "nvim_lsp" },
