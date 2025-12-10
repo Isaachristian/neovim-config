@@ -226,13 +226,27 @@ require("lazy").setup({
 					css = { "prettier" },
 					html = { "prettier" },
 					json = { "prettier" },
-					-- sql = { "pg_format" },
-					sql = { "prettier" },
+					sql = { "pg_format" },
+					-- sql = { "prettier" },
 					lua = { "stylua" },
 				},
 				format_on_save = {
 					timeout_ms = 5000,
 					lsp_fallback = true,
+				},
+				formatters = {
+					pg_format = {
+						prepend_args = {
+							"--spaces",
+							"2", -- or 4
+							"--function-case",
+							"1", -- 0=unchanged, 1=lowercase, 2=uppercase, 3=capitalize
+							"--keyword-case",
+							"1", -- same options as function-case
+							-- "--comma-break", -- break after commas in SELECT
+							"--no-extra-line", -- remove extra blank lines
+						},
+					},
 				},
 			})
 		end,
