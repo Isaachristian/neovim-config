@@ -98,7 +98,6 @@ require("lazy").setup({
 					-- "postgres_lsp",
 					-- "lua_ls",
 					"stylua",
-					"emmet_ls",
 				},
 			})
 
@@ -153,15 +152,6 @@ require("lazy").setup({
 				capabilities = capabilities,
 			}
 			vim.lsp.enable("lua_ls")
-
-			-- Emmet
-			vim.lsp.config.emmet_ls = {
-				cmd = { "emmet-ls", "--stdio" },
-				root_markers = { ".git" },
-				filetypes = { "html", "css", "svelte", "javascript", "typescript" },
-				capabilities = capabilities,
-			}
-			vim.lsp.enable("emmet_ls")
 
 			-- Inline diagnostics
 			vim.diagnostic.config({
